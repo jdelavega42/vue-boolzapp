@@ -28,10 +28,9 @@ body {
 }
 /* @miscellaneous */
 .block {
-    height: 10%;
+    height: 80px;
     display: flex;
     justify-content: space-between;
-
 }
 
 .circle-wrapper {
@@ -44,6 +43,7 @@ body {
     font-size: 1.5rem;
     color: #8EDAFC;
 }
+
 /* @wrapper */
 .mc_wrapper {
     height: 100vh;
@@ -78,9 +78,10 @@ body {
     height: 100%;
     width: 40%;
     border-right: 2px solid #DADBD4;
+    display: flex;
+    flex-direction: column;
     /* debug */
     background-color: aliceblue;
-
 }
 
 .user > * {
@@ -88,7 +89,6 @@ body {
     font-size: 1.5rem;
 }
 .banner {
-    height: 10%;
     background-color: #8EDAFC;
     display: flex;
     align-items: center;
@@ -99,9 +99,24 @@ body {
     display: inline-block;
     width: 10%;
     text-align: center;
+    padding: .5rem;
 }
 .input-group input {
     width: 90%;
+    padding: .5rem;
+    border: none;
+    border-radius: 5px;
+}
+.contact-list {
+    overflow-y: auto;
+    flex-grow: 1;
+}
+li .block {
+    margin-bottom: .5rem;
+}
+.avatar-info {
+    flex-grow: 1;
+    margin: auto;
 }
 
 /* !MAIN */
@@ -115,10 +130,48 @@ body {
 }
 
 .main-content{
-    height: 80%;
+    height: calc(100% - 130px);
     background-image: url(../img/mine.jpg);
+    overflow-y: auto;
 }
 .footer {
-    height: 10%;
     background-color: #F3EEEA;
 }
+
+ /* @MAIN-content */
+ .main-content {
+    display: flex;
+    flex-direction: column;
+ }
+
+ .message {
+     padding: .5rem;
+     border-radius: 5px;
+ }
+
+ .received {
+    background-color: #F2FBFF;
+    align-self: flex-start;
+ }
+
+ .sent {
+    background-color: #D5F9BA;
+    align-self: flex-end;
+ }
+
+ .footer {
+    height: 50px;
+    display: flex;
+    align-items: center;
+ }
+
+ .footer > * {
+    display: inline-block;
+    padding: .5rem;
+ }
+
+ .footer input {
+    flex-grow: 1;
+    height: 30px;
+    border: none;
+ }
