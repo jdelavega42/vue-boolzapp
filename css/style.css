@@ -31,6 +31,7 @@ body {
     height: 80px;
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
 
 .circle-wrapper {
@@ -42,6 +43,7 @@ body {
     text-align: center;
     font-size: 1.5rem;
     color: #8EDAFC;
+    margin-right: .5rem;
 }
 
 /* @wrapper */
@@ -113,14 +115,25 @@ body {
 }
 li .block {
     margin-bottom: .5rem;
+    align-items: center;
 }
+
 .avatar-info {
     flex-grow: 1;
     margin: auto;
 }
+.block > p {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+}
 
 .hidden {
     display: none;
+}
+
+.contact-list .block:hover {
+    background: lightgray;
 }
 
 /* !MAIN */

@@ -168,7 +168,7 @@ createApp({
                 activeChat: null,
                 disabled: true,
                 myMessage: '',
-                autoMessage: 'Jacopo é gay',
+                autoMessage: 'Ok',
                 finder: '',
                 timestamp: new Date().toLocaleString(),
         }
