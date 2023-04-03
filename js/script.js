@@ -165,11 +165,32 @@ createApp({
                         ],
                     }
                 ],
-
+                activeChat: null,
+                disabled: true,
+                myMessage: '',
+                autoMessage: 'Ok',
+                timestamp: '',
         }
     },
     methods: {
-        
-    }
+        activeChatSelected(element){
+            this.activeChat = element;
+            this.disabled = false;
+        },
+        messageColor(element){
+            if (element.status === 'received'){
+                return 'received';
+            } else {
+                return 'sent';
+            }
+        },
+        messageGenerator(thisChat) {
+            thisChat.messages.push({date: this.timestamp, message: this.myMessage, status: 'sent'});
+            console.log(this.timestamp);
+            setTimeout(() => {
+                thisChat.messages.push({date: this.timestamp, message: this.autoMessage, status: 'received'})
+            }, 1000);
+        },
+    }   
 
 }).mount("#app");

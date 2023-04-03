@@ -56,7 +56,7 @@
                     <!-- @SIDE-list -->
                     <ul class="contact-list">
                         <li v-for="contact in contacts">
-                            <div class="block">
+                            <div class="block" @click="activeChatSelected(contact)">
                                 <div class="circle-wrapper">
                                     <img :src="`img/avatar${contact.avatar}.jpg`" alt="avatar-image">
                                 </div>
@@ -64,21 +64,38 @@
                                     <p class="primary-text">{{ contact.name }}</p>
                                     <p class="secondary-text"> {{contact.messages[contact.messages.length-1].message}}</p>
                                 </div>
-                                <p class="secondary-text">{{contact.messages[contact.messages.length-1].date}}</p>
+                                <p class="secondary-text">{{ contact.messages[contact.messages.length-1].date.slice(11, -3) }}</p>
                             </div>
                         </li>
                     </ul>
                 </div>                    
 
                 <!-- !MAIN -->
-                <div class="main">
+                <div v-if="activeChat === null" class="main">
+                    <!-- @MAIN-header -->
+                    <div class="block header">
+                    </div>
+                    <!-- @MAIN-content -->
+                    <div class="main-content">
+                        <span class="message empty">
+                            Seleziona una chat
+                        </span>
+                    </div>
+                    <!-- @MAIN-footer -->
+                    <div class="footer">
+                        <i class="fa-regular fa-face-smile"></i>
+                        <input type="text" placeholder="Scrivi un messaggio" :disabled="disabled">
+                        <i class="fa-solid fa-microphone"></i>
+                    </div>
+                </div>
+                <div  v-else class="main">
                     <!-- @MAIN-header -->
                     <div class=" block header">
                         <div class="user">
-                            <img src="img/avatar_1.jpg" alt="avatar-image">
+                            <img :src="`img/avatar${activeChat.avatar}.jpg`" alt="avatar-image">
                             <div class="avatar-info">
-                                <p class="primary-text">avatar_1.name</p>
-                                <p class="secondary-text">Ultimo accesso oggi alle 12:00</p>
+                                <p class="primary-text">{{activeChat.name}}</p>
+                                <p class="secondary-text">{{activeChat.messages[activeChat.messages.length-1].date.slice(11, -3)}}</p>
                             </div>
                         </div>
                         <div class="btn-group">
@@ -89,13 +106,15 @@
                     </div>
                     <!-- @MAIN-content -->
                     <div class="main-content">
-                        <span class="message received">messaggio ricevuto</span>
-                        <span class="message sent"> messaggio inviato</span>
+                        <div v-for="currentChat in activeChat.messages" class="message" :class="currentChat.status === 'received' ? 'received':'sent'">
+                            {{currentChat.message}}
+                            <span class="date"> {{currentChat.date.slice(11, -3)}}</span>
+                        </div>
                     </div>
                     <!-- @MAIN-footer -->
                     <div class="footer">
                         <i class="fa-regular fa-face-smile"></i>
-                        <input type="text" placeholder="Scrivi un messaggio">
+                        <input type="text" placeholder="Scrivi un messaggio" v-model="myMessage" @keyup.enter="messageGenerator(activeChat)">
                         <i class="fa-solid fa-microphone"></i>
                     </div>
                 </div>
