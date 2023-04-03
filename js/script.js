@@ -168,8 +168,9 @@ createApp({
                 activeChat: null,
                 disabled: true,
                 myMessage: '',
-                autoMessage: 'Ok',
-                timestamp: '',
+                autoMessage: 'Jacopo é gay',
+                finder: '',
+                timestamp: new Date().toLocaleString(),
         }
     },
     methods: {
@@ -186,11 +187,28 @@ createApp({
         },
         messageGenerator(thisChat) {
             thisChat.messages.push({date: this.timestamp, message: this.myMessage, status: 'sent'});
-            console.log(this.timestamp);
+            console.log(this.now);
             setTimeout(() => {
                 thisChat.messages.push({date: this.timestamp, message: this.autoMessage, status: 'received'})
             }, 1000);
         },
+        filter() {
+            if (this.finder === '') {
+                this.contacts.forEach(element => {
+                    element.visible = true;
+                });
+            };
+            this.contacts.forEach(element => {  
+                const name = element.name.toLowerCase();
+                let finder = this.finder.toLowerCase();
+                console.log(finder);
+                console.log(name);
+               if (!name.includes(finder)) {
+                element.visible = false;
+               }
+            });
+        },
+
     }   
 
 }).mount("#app");

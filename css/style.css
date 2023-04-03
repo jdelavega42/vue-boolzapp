@@ -119,6 +119,10 @@ li .block {
     margin: auto;
 }
 
+.hidden {
+    display: none;
+}
+
 /* !MAIN */
 .main {
     height: 100%;
