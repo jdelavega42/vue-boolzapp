@@ -187,7 +187,6 @@ createApp({
         },
         messageGenerator(thisChat) {
             thisChat.messages.push({date: this.timestamp, message: this.myMessage, status: 'sent'});
-            console.log(this.now);
             setTimeout(() => {
                 thisChat.messages.push({date: this.timestamp, message: this.autoMessage, status: 'received'})
             }, 1000);
@@ -205,7 +204,9 @@ createApp({
                 console.log(name);
                if (!name.includes(finder)) {
                 element.visible = false;
-               }
+               } else {
+                element.visible = true;
+               };
             });
         },
 
