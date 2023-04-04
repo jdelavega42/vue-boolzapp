@@ -82,8 +82,6 @@ body {
     border-right: 2px solid #DADBD4;
     display: flex;
     flex-direction: column;
-    /* debug */
-    background-color: aliceblue;
 }
 
 .user > * {
@@ -131,8 +129,11 @@ li .block {
 .hidden {
     display: none;
 }
+.contact-list .block {
+    background-color: yellow;
+}
 
-.contact-list .block:hover {
+.contact-list .avatar-info:focus-visible {
     background: lightgray;
 }
 
@@ -162,42 +163,53 @@ li .block {
  }
 
  .message {
-     padding: .5rem;
+     padding: .5rem 2.5rem .75rem .5rem;
      border-radius: 5px;
      margin-bottom: .5rem;
      max-width: 60%;
+     position: relative;
  }
- .empty {
-    background-color: rgba(0, 0, 0, .3);
-    align-self: center;
-    margin: auto;
- }
- .received {
-    background-color: #F2FBFF;
-    align-self: flex-start;
- }
+ .message > i {
+    position: absolute;
+    top: .2rem;
+    right: .3rem;
+    font-size: .8rem;
+}
 
- .sent {
-    background-color: #D5F9BA;
-    align-self: flex-end;
- }
+.empty {
+background-color: rgba(0, 0, 0, .3);
+align-self: center;
+margin: auto;
+}
+
+.received {
+background-color: #F2FBFF;
+align-self: flex-start;
+}
+
+.sent {
+background-color: #D5F9BA;
+align-self: flex-end;
+}
 .date {
     font-size: .7rem;
-    text-align: end;
+    position: absolute;
+    bottom: .5rem;
+    right: .5rem;
 }
- .footer {
-    height: 50px;
-    display: flex;
-    align-items: center;
- }
+.footer {
+height: 50px;
+display: flex;
+align-items: center;
+}
 
- .footer > * {
-    display: inline-block;
-    padding: .5rem;
- }
+.footer > * {
+display: inline-block;
+padding: .5rem;
+}
 
- .footer input {
-    flex-grow: 1;
-    height: 30px;
-    border: none;
- }
+.footer input {
+flex-grow: 1;
+height: 30px;
+border: none;
+}

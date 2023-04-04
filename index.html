@@ -109,6 +109,8 @@
                         <div v-for="currentChat in activeChat.messages" class="message" :class="currentChat.status === 'received' ? 'received':'sent'">
                             {{currentChat.message}}
                             <span class="date"> {{currentChat.date.slice(11, -3)}}</span>
+                            <i class="fa-solid fa-chevron-down" @click="toggle"></i>
+                            <div v-show="menu">hello world</div>
                         </div>
                     </div>
                     <!-- @MAIN-footer -->
