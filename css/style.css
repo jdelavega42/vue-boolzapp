@@ -190,11 +190,21 @@ align-self: flex-start;
 background-color: #D5F9BA;
 align-self: flex-end;
 }
+
 .date {
     font-size: .7rem;
     position: absolute;
     bottom: .5rem;
     right: .5rem;
+}
+
+.message > p > i {
+    position: absolute;
+    top: 1rem;
+    right: 0;
+    background-color: lightcoral;
+    padding: .5rem;
+    border-radius: 5px;
 }
 .footer {
 height: 50px;

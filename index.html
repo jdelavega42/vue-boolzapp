@@ -55,16 +55,18 @@
                     </div>
                     <!-- @SIDE-list -->
                     <ul class="contact-list">
-                        <li v-for="contact in contacts">
+                        <li v-for="contact in contacts"  @click="addContactProperty">
                             <div class="block" :class="[contact.visible === false ? 'hidden' : '', contact === activeChat ? 'active' : '']" @click="activeChatSelected(contact)">
                                 <div class="circle-wrapper">
                                     <img :src="`img/avatar${contact.avatar}.jpg`" alt="avatar-image">
                                 </div>
                                 <div class="avatar-info">
                                     <p class="primary-text">{{ contact.name }}</p>
-                                    <p class="secondary-text"> {{contact.messages[contact.messages.length-1].message}}</p>
+                                    <p v-if="contact.messages.length === 0"></p>
+                                    <p v-else class="secondary-text"> {{contact.messages[contact.messages.length-1].message}}</p>
                                 </div>
-                                <p class="secondary-text">{{ contact.messages[contact.messages.length-1].date.slice(11, -3) }}</p>
+                                <p v-if="contact.messages.length === 0"></p>
+                                <p v-else class="secondary-text">{{ contact.messages[contact.messages.length-1].date.slice(11, -3) }}</p>
                             </div>
                         </li>
                     </ul>
@@ -95,7 +97,8 @@
                             <img :src="`img/avatar${activeChat.avatar}.jpg`" alt="avatar-image">
                             <div class="avatar-info">
                                 <p class="primary-text">{{activeChat.name}}</p>
-                                <p class="secondary-text">{{activeChat.messages[activeChat.messages.length-1].date.slice(11, -3)}}</p>
+                                <p v-if="activeChat.messages.length === 0"></p>
+                                <p v-else class="secondary-text">{{activeChat.messages[activeChat.messages.length-1].date.slice(11, -3)}}</p>
                             </div>
                         </div>
                         <div class="btn-group">
@@ -106,10 +109,13 @@
                     </div>
                     <!-- @MAIN-content -->
                     <div class="main-content">
-                        <div v-for="currentChat in activeChat.messages" class="message" :class="currentChat.status === 'received' ? 'received':'sent'">
+                        <div v-for="(currentChat, index) in activeChat.messages" class="message" :class="currentChat.status === 'received' ? 'received':'sent'">
                             {{currentChat.message}}
                             <span class="date"> {{currentChat.date.slice(11, -3)}}</span>
-                            <i class="fa-solid fa-chevron-down"></i>
+                            <i class="fa-solid fa-chevron-down" @click="toggle(currentChat)"></i>
+                            <p v-show="currentChat.menuToggler">
+                                <i class="fa-solid fa-trash" @click="deleteMessage(activeChat.messages, currentChat, index)"></i>
+                            </p>
                         </div>
                     </div>
                     <!-- @MAIN-footer -->

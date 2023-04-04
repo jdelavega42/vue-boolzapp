@@ -170,7 +170,7 @@ createApp({
             myMessage: '',
             autoMessage: 'Ok',
             finder: '',
-            timestamp: new Date().toLocaleString()
+            timestamp: new Date().toLocaleString(),
         }
     },
 
@@ -196,11 +196,6 @@ createApp({
             }
         },
         filter() {
-            if (this.finder === '') {
-                this.contacts.forEach(element => {
-                    element.visible = true;
-                });
-            };
             this.contacts.forEach(element => {
                 const name = element.name.toLowerCase();
                 let finder = this.finder.toLowerCase();
@@ -211,10 +206,23 @@ createApp({
                 };
             });
         },
-        statusPicker(){
-
+        addContactProperty() {
+            for (key in this.contacts) {
+                const currentContact = this.contacts[key];
+                for (messages in currentContact.messages) {
+                    const currentMessage = currentContact.messages[messages];
+                    currentMessage.menuToggler = false;
+                }
+            }
+            console.log(this.contacts);
+        },
+        toggle(element){
+            element.menuToggler = !element.menuToggler;
+            console.log(element);
+        },
+        deleteMessage(array, object, index){
+            array.splice(index, 1)
         }
-
     }
 
 }).mount("#app");
