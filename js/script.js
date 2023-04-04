@@ -170,10 +170,10 @@ createApp({
             myMessage: '',
             autoMessage: 'Ok',
             finder: '',
-            timestamp: new Date().toLocaleString(),
-            menu: false,
+            timestamp: new Date().toLocaleString()
         }
     },
+
     methods: {
         activeChatSelected(element) {
             this.activeChat = element;
@@ -187,11 +187,13 @@ createApp({
             }
         },
         messageGenerator(thisChat) {
-            thisChat.messages.push({ date: this.timestamp, message: this.myMessage, status: 'sent' });
-            setTimeout(() => {
-                thisChat.messages.push({ date: this.timestamp, message: this.autoMessage, status: 'received' })
-            }, 1000);
-            this.myMessage = '';
+            if (this.myMessage != ''){
+                thisChat.messages.push({ date: this.timestamp, message: this.myMessage, status: 'sent' });
+                setTimeout(() => {
+                    thisChat.messages.push({ date: this.timestamp, message: this.autoMessage, status: 'received' })
+                }, 1000);
+                this.myMessage = '';
+            }
         },
         filter() {
             if (this.finder === '') {
@@ -209,9 +211,9 @@ createApp({
                 };
             });
         },
-        toggle(){
-            this.menu = !this.menu;
-        },
+        statusPicker(){
+
+        }
 
     }
 

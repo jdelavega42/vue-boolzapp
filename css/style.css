@@ -82,6 +82,8 @@ body {
     border-right: 2px solid #DADBD4;
     display: flex;
     flex-direction: column;
+    /* debug */
+    background-color: aliceblue;
 }
 
 .user > * {
@@ -129,12 +131,9 @@ li .block {
 .hidden {
     display: none;
 }
-.contact-list .block {
-    background-color: yellow;
-}
 
-.contact-list .avatar-info:focus-visible {
-    background: lightgray;
+.active {
+    background-color: lightgray;
 }
 
 /* !MAIN */

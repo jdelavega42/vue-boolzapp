@@ -15,7 +15,7 @@
     <!-- custom style-->
     <link rel="stylesheet" href="css/style.css">
     <!-- vue js -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.47/vue.global.min.js"></script>
 </head>
 
 <body>
@@ -51,12 +51,12 @@
                         <label for="finder">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </label>
-                        <input type="text" name="" id="" placeholder="Cerca o inizia una nuova chat" v-model="finder" @keyup="filter">
+                        <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="finder" @keyup="filter">
                     </div>
                     <!-- @SIDE-list -->
                     <ul class="contact-list">
                         <li v-for="contact in contacts">
-                            <div class="block" :class="contact.visible === false ? 'hidden' : ''" @click="activeChatSelected(contact)">
+                            <div class="block" :class="[contact.visible === false ? 'hidden' : '', contact === activeChat ? 'active' : '']" @click="activeChatSelected(contact)">
                                 <div class="circle-wrapper">
                                     <img :src="`img/avatar${contact.avatar}.jpg`" alt="avatar-image">
                                 </div>
@@ -109,8 +109,7 @@
                         <div v-for="currentChat in activeChat.messages" class="message" :class="currentChat.status === 'received' ? 'received':'sent'">
                             {{currentChat.message}}
                             <span class="date"> {{currentChat.date.slice(11, -3)}}</span>
-                            <i class="fa-solid fa-chevron-down" @click="toggle"></i>
-                            <div v-show="menu">hello world</div>
+                            <i class="fa-solid fa-chevron-down"></i>
                         </div>
                     </div>
                     <!-- @MAIN-footer -->
