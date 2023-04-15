@@ -55,7 +55,7 @@
                     </div>
                     <!-- @SIDE-list -->
                     <ul class="contact-list">
-                        <li v-for="contact in contacts"  @click="addContactProperty">
+                        <li v-for="contact in contacts">
                             <div class="block" :class="[contact.visible === false ? 'hidden' : '', contact === activeChat ? 'active' : '']" @click="activeChatSelected(contact)">
                                 <div class="circle-wrapper">
                                     <img :src="`img/avatar${contact.avatar}.jpg`" alt="avatar-image">
@@ -109,11 +109,13 @@
                     </div>
                     <!-- @MAIN-content -->
                     <div class="main-content">
-                        <div v-for="(currentChat, index) in activeChat.messages" class="message" :class="currentChat.status === 'received' ? 'received':'sent'">
+                        <div v-for="(currentChat, index) in activeChat.messages" class="message" :class="currentChat.status === 'received' ? 'received':'sent'" @click="messageSelector(currentChat)">
                             {{currentChat.message}}
                             <span class="date"> {{currentChat.date.slice(11, -3)}}</span>
                             <i class="fa-solid fa-chevron-down" @click="toggle(currentChat)"></i>
-                            <p v-show="currentChat.menuToggler">
+                            <!-- <i class="fa-solid fa-chevron-down" @click="toggle(currentChat,index)"></i> -->
+                            <!-- <p v-show="currentChat.menuToggler"> -->
+                            <p :class="currentChat === messageSelected ? 'show' : 'none'">
                                 <i class="fa-solid fa-trash" @click="deleteMessage(activeChat.messages, currentChat, index)"></i>
                             </p>
                         </div>

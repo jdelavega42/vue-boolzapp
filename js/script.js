@@ -166,6 +166,7 @@ createApp({
                 }
             ],
             activeChat: null,
+            messageSelected: null,
             disabled: true,
             myMessage: '',
             autoMessage: 'Ok',
@@ -178,6 +179,7 @@ createApp({
         activeChatSelected(element) {
             this.activeChat = element;
             this.disabled = false;
+            // this.addContactProperty(element)
         },
         messageColor(element) {
             if (element.status === 'received') {
@@ -206,19 +208,37 @@ createApp({
                 };
             });
         },
-        addContactProperty() {
-            for (key in this.contacts) {
-                const currentContact = this.contacts[key];
-                for (messages in currentContact.messages) {
-                    const currentMessage = currentContact.messages[messages];
-                    currentMessage.menuToggler = false;
-                }
-            }
-            console.log(this.contacts);
+        // addContactProperty(object) {
+        //     // for (key in this.contacts) {
+        //     //     const currentContact = this.contacts[key];
+        //     //     for (messages in currentContact.messages) {
+        //     //         const currentMessage = currentContact.messages[messages];
+        //     //         currentMessage.menuToggler = false;
+        //     //     }
+        //     // }
+        //     const messages = object.messages;
+        //     messages.forEach( message => {
+        //         message.menuToggler = false
+        //     })  
+        // },
+        messageSelector(element) {
+            this.messageSelected = element;
+            console.log(this.messageSelected);
         },
-        toggle(element){
-            element.menuToggler = !element.menuToggler;
-            console.log(element);
+        // chevronToggler(element){
+        //     element.menuToggler = !element.menuToggler;
+        //     console.log(element.menuToggler);
+        // },
+        // toggle(element){
+        //         element.menuToggler = !element.menuToggler;
+        // },
+        toggle(message){
+            if (message === this.messageSelected){
+                message.menuToggler = true;
+            } else {
+                message.menuToggler = false;
+            }
+            console.log(message);
         },
         deleteMessage(array, object, index){
             array.splice(index, 1)
@@ -226,3 +246,7 @@ createApp({
     }
 
 }).mount("#app");
+
+// controllare la data
+// ! per array utilizza for each
+// bug flag
